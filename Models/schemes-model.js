@@ -9,9 +9,15 @@ module.exports = {
 }
 
 function get(id){
-    return id 
-        ? db('schemes').where({ id }).first()
-        : db('schemes');
+    if (id) {
+        return db('schemes').where({ id }).first()
+    } else {
+        return db('schemes as sc')
+        .join('steps as st', "sc.id", "st.scheme_id")
+        .select('sc.*')
+        .count('st.instructions as scheme_steps')
+        .groupBy('scheme_id');
+    }
 }
 
 function getSteps(id){
