@@ -15,11 +15,16 @@ function get(id){
 }
 
 function getSteps(id){
-    
+    return db('schemes as sc')
+        .join('steps as st', 'sc.id', 'st.scheme_id')
+        .select('sc.scheme_name as Goal', 'st.step_number as Step Number', 'st.instructions')
+        .where({ scheme_id: id })
 }
 
 function add(scheme){
-
+    return db('schemes')
+        .insert(scheme)
+        .then(([id]) => get(id));
 }
 
 function update(id, updatedScheme){
