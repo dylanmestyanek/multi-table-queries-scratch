@@ -29,12 +29,22 @@ router.get("/:id/steps", validateSchemeId, (req, res) => {
 // POST - add a new scheme
 router.post("/", validateScheme, (req, res) => {
     Schemes.add(req.body)
-    .then(newScheme => res.json(newScheme))
+    .then(newScheme => res.status(201).json(newScheme))
     .catch(err => res.status(500).json({ error: "Failed to add that new scheme to the database." }))
 })
 
 // PUT - update a scheme 
+router.put("/:id", validateSchemeId, validateScheme, (req, res) => {
+    Schemes.update(req.params.id, req.body)
+    .then(updatedScheme => res.status(201).json(updatedScheme))
+    .catch(err => res.status(500).json({ error: "Failed to update scheme." }))
+})
 
 // REMOVE - delete a scheme
+router.delete("/:id", validateSchemeId, (req, res) => {
+    Schemes.remove(req.params.id)
+    .then(deleted => res.json(deleted))
+    .catch(err => res.status(500).json({ error: "Failed to remove scheme from the database." }))
+})
 
 module.exports = router;

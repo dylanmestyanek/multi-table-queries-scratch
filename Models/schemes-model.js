@@ -28,9 +28,14 @@ function add(scheme){
 }
 
 function update(id, updatedScheme){
-
+    return db('schemes')
+        .where({ id })
+        .update(updatedScheme)
+        .then(() => get(id));
 }
 
 function remove(id){
-
+    return db('schemes')
+        .where({ id })
+        .del();
 }
