@@ -23,7 +23,7 @@ function get(id){
 function getSteps(id){
     return db('schemes as sc')
         .join('steps as st', 'sc.id', 'st.scheme_id')
-        .select('sc.scheme_name as Goal', 'st.step_number as Step Number', 'st.instructions')
+        .select('st.id as step_id', 'sc.scheme_name as Goal', 'st.step_number as Step Number', 'st.instructions')
         .where({ scheme_id: id })
 }
 
