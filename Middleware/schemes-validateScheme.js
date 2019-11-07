@@ -1,3 +1,4 @@
+// Ensures Scheme object you are adding to the database has the required properties
 const validateScheme = (req, res, next) => {
     const scheme = req.body;
 

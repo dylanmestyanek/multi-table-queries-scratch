@@ -1,3 +1,4 @@
+// Ensures Step object you are adding to the database has the required properties
 const validateStep = (req, res, next) => {
     const step = req.body;
 

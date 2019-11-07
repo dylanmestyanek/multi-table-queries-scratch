@@ -1,3 +1,4 @@
+// Ensures that the Step exists, before proceeding to the HTTP requests
 const Steps = require("../Models/steps-model");
 
 const validateStepId = (req, res, next) => {

@@ -1,3 +1,4 @@
+// Ensures that the Scheme exists, before proceeding to the HTTP requests
 const Schemes = require("../Models/schemes-model");
 
 const validateSchemeId = (req, res, next) => {
